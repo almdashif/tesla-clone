@@ -29,14 +29,14 @@ export default function Vehicles() {
 
     async function getCars() {
         try {
-            const res = await fetch("http://localhost:3000/api/cars", {
-                cache: "no-store", // always fresh
+            const res = await fetch(`${window.location.origin}/api/cars`, {
+                cache: "no-store",
             });
 
             if (!res.ok) throw new Error("Failed to fetch cars");
 
             const data = await res.json();
-            
+
             setData(data)
         } catch (error) {
             console.error("API Error:", error);
