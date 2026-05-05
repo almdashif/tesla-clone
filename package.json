@@ -8,9 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.6.1",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "swiper": "^12.1.4"
   },
   "devDependencies": {

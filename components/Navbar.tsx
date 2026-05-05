@@ -3,15 +3,16 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const navLinks = ['Vehicles', 'Energy', 'Charging', 'Discover']
+const navLinks = [{name:'Vehicles', link:'cars'},{name:'Energy', link:'#'},{name:'Charging', link:'#'},{name:'Discover', link:'#'}]
 
-export default function Navbar() {
+export default function Navbar({ page = '' }: { page?: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(page == 'cars' ? true : false);
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20; // threshold
+      if (page == 'cars') { setScrolled(true); return }
       setScrolled(isScrolled);
     };
 
@@ -39,13 +40,13 @@ export default function Navbar() {
 
         {/* Desktop Nav Links - Center */}
         <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((link) => (
+          {navLinks.map((val,i) => (
             <Link
-              key={link}
-              href="#"
+              key={i}
+          href={val?.link?.startsWith("/") ? val.link : `/${val.link}`}
               className={`nav-link ${scrolled ? "text-black" : "text-white"}`}
             >
-              {link}
+              {val?.name ?? ''}
             </Link>
           ))}
         </div>

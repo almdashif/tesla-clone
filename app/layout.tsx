@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import ReduxProvider from '@/src/store/provider'
 
 export const metadata: Metadata = {
   title: 'Tesla | Electric Cars, Solar & Clean Energy',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   )
 }
