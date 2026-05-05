@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const navLinks = [{name:'Vehicles', link:'cars'},{name:'Energy', link:'#'},{name:'Charging', link:'#'},{name:'Discover', link:'#'}]
+const navLinks = [{ name: 'Vehicles', link: 'cars' }, { name: 'Energy', link: '#' }, { name: 'Charging', link: '#' }, { name: 'Discover', link: '#' }]
 
 export default function Navbar({ page = '' }: { page?: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -40,10 +40,10 @@ export default function Navbar({ page = '' }: { page?: string }) {
 
         {/* Desktop Nav Links - Center */}
         <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-          {navLinks.map((val,i) => (
+          {navLinks.map((val, i) => (
             <Link
               key={i}
-          href={val?.link?.startsWith("/") ? val.link : `/${val.link}`}
+              href={val?.link?.startsWith("/") ? val.link : `/${val.link}`}
               className={`nav-link ${scrolled ? "text-black" : "text-white"}`}
             >
               {val?.name ?? ''}
@@ -121,14 +121,15 @@ export default function Navbar({ page = '' }: { page?: string }) {
             </button>
           </div>
           <div className="flex flex-col px-8 py-6 gap-2">
-            {navLinks.map((link) => (
+            {navLinks.map((val,i) => (
               <Link
-                key={link}
-                href="#"
+                key={val?.name ?? i}
+                href={val?.link?.startsWith("/") ? val.link : `/${val.link}`}
+
                 className="text-[#171A20] font-medium text-lg py-3 border-b border-gray-100"
                 onClick={() => setMenuOpen(false)}
               >
-                {link}
+                {val?.name}
               </Link>
             ))}
             <div className="mt-4 flex flex-col gap-3">
