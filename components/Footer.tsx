@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const footerLinks = [
-  { label: 'Tesla © 2024', href: '#' },
+  { label: 'Tesla © 2026', href: '#' },
   { label: 'Privacy & Legal', href: '#' },
   { label: 'Vehicle Recalls', href: '#' },
   { label: 'Contact', href: '#' },
