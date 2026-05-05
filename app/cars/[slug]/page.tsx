@@ -60,98 +60,97 @@ export default function Page({ params }: { params: { slug: string } }) {
       </div>
 
       {/* MAIN */}
-      <div className="grid grid-cols-[1fr_360px]">
+     <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px]">
 
-        {/* LEFT */}
-        <div className="p-10">
+  {/* LEFT */}
+  <div className="p-5 sm:p-8 lg:p-10">
 
-          {/* STATS */}
-          <div className="mb-10">
-            <p className="text-xs tracking-[4px] text-gray-400 mb-5 uppercase">
-              Performance
-            </p>
+    {/* STATS */}
+    <div className="mb-8 lg:mb-10">
+      <p className="text-xs tracking-[4px] text-gray-400 mb-5 uppercase">
+        Performance
+      </p>
 
-            <div className="grid grid-cols-3 gap-[1px] bg-gray-200">
-              {[ 
-                { val: range, unit: "mi", label: "Range" },
-                { val: accel, unit: "s", label: "0-60" },
-                { val: topSpeed, unit: "mph", label: "Top Speed" },
-              ].map((s, i) => (
-                <div key={i} className="bg-white p-6">
-                  <div className="text-5xl font-bold text-gray-900">
-                    {s.val}
-                    <span className="text-sm text-gray-400 ml-1">{s.unit}</span>
-                  </div>
-                  <p className="text-[10px] tracking-[3px] text-gray-400 mt-1 uppercase">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
+      <div className="grid grid-cols-3 gap-[1px] bg-gray-200">
+        {[
+          { val: range, unit: "mi", label: "Range" },
+          { val: accel, unit: "s", label: "0-60" },
+          { val: topSpeed, unit: "mph", label: "Top Speed" },
+        ].map((s, i) => (
+          <div key={i} className="bg-white p-4 sm:p-6">
+            <div className="text-3xl sm:text-5xl font-bold text-gray-900">
+              {s.val}
+              <span className="text-xs sm:text-sm text-gray-400 ml-1">{s.unit}</span>
             </div>
-          </div>
-
-          {/* COLORS */}
-          <div className="mb-10">
-            <p className="text-xs tracking-[4px] text-gray-400 uppercase mb-4">
-              Exterior Color
-            </p>
-
-            <div className="flex gap-4">
-              {mapColors(selectedCar?.colorNames ?? [], selectedCar?.colors ?? [])?.map((c,i) => (
-                <div
-                  key={c.name}
-                  onClick={() => {setColor(c.name); setHero(prev => selectedCar?.images[i] ?? prev)}}
-                  className="flex flex-col items-center cursor-pointer group"
-                >
-                  <div
-                    className={`w-8 h-8 rounded-full border-2 transition-all  group-hover:border-gray-400`}
-                    style={{ background: c.color, borderColor: color == c.name ? c.color : '' }}
-                  />
-                  <span className={`text-xs mt-1 transition ${
-                    color === c.name ? '' : "text-gray-400"
-                  } text-red`}
-                   style={{ color: color === c.name ? c.color : undefined }}
-                   >
-                    {c.name ?? ''}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div className="border-l border-gray-200 p-8 bg-gray-50">
-
-          <div className="mb-6">
-            <h2 className="text-5xl font-bold text-gray-900">
-              ${selectedCar?.price?.toLocaleString()}
-            </h2>
-            <p className="text-xs text-gray-400 mt-2">
-              Est. ${(Number(selectedCar?.price)/72)?.toLocaleString()}/mo · 72 mo
+            <p className="text-[10px] tracking-[3px] text-gray-400 mt-1 uppercase">
+              {s.label}
             </p>
           </div>
-
-          <div className="space-y-3 text-sm border-y border-gray-200 py-4 mb-6">
-            <div className="flex justify-between">
-              <span className="text-gray-400">Type</span>
-              <span className="text-gray-800 font-medium">{selectedCar?.category ?? ''}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-400">Color</span>
-              <span className="text-gray-800 font-medium">{color}</span>
-            </div>
-          </div>
-
-          <button className="w-full bg-black text-white py-4 uppercase text-xs tracking-[3px] mb-3 hover:bg-gray-800 transition">
-            Order Now
-          </button>
-
-          <button className="w-full border border-gray-300 py-3 uppercase text-xs tracking-[3px] text-gray-500 hover:text-black hover:border-black transition">
-            Test Drive
-          </button>
-        </div>
+        ))}
       </div>
+    </div>
+
+    {/* COLORS */}
+    <div className="mb-8 lg:mb-10">
+      <p className="text-xs tracking-[4px] text-gray-400 uppercase mb-4">
+        Exterior Color
+      </p>
+
+      <div className="flex flex-wrap gap-4">
+        {mapColors(selectedCar?.colorNames ?? [], selectedCar?.colors ?? [])?.map((c, i) => (
+          <div
+            key={c.name}
+            onClick={() => { setColor(c.name); setHero(prev => selectedCar?.images[i] ?? prev); }}
+            className="flex flex-col items-center cursor-pointer group"
+          >
+            <div
+              className={`w-8 h-8 rounded-full border-2 transition-all group-hover:border-gray-400`}
+              style={{ background: c.color, borderColor: color === c.name ? c.color : '' }}
+            />
+            <span
+              className={`text-xs mt-1 transition ${color === c.name ? '' : 'text-gray-400'}`}
+              style={{ color: color === c.name ? c.color : undefined }}
+            >
+              {c.name ?? ''}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* RIGHT */}
+  <div className="border-t lg:border-t-0 lg:border-l border-gray-200 p-5 sm:p-8 bg-gray-50">
+
+    <div className="mb-6">
+      <h2 className="text-3xl sm:text-5xl font-bold text-gray-900">
+        ${selectedCar?.price?.toLocaleString()}
+      </h2>
+      <p className="text-xs text-gray-400 mt-2">
+        Est. ${(Number(selectedCar?.price) / 72)?.toLocaleString()}/mo · 72 mo
+      </p>
+    </div>
+
+    <div className="space-y-3 text-sm border-y border-gray-200 py-4 mb-6">
+      <div className="flex justify-between">
+        <span className="text-gray-400">Type</span>
+        <span className="text-gray-800 font-medium">{selectedCar?.category ?? ''}</span>
+      </div>
+      <div className="flex justify-between">
+        <span className="text-gray-400">Color</span>
+        <span className="text-gray-800 font-medium">{color}</span>
+      </div>
+    </div>
+
+    <button className="w-full bg-black text-white py-4 uppercase text-xs tracking-[3px] mb-3 hover:bg-gray-800 transition">
+      Order Now
+    </button>
+
+    <button className="w-full border border-gray-300 py-3 uppercase text-xs tracking-[3px] text-gray-500 hover:text-black hover:border-black transition">
+      Test Drive
+    </button>
+  </div>
+</div>
 
       <Footer />
     </div>
