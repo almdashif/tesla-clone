@@ -1,5 +1,4 @@
 import Navbar from '@/components/Navbar'
-import HeroSlider from '@/components/HeroSlider'
 import VehicleGrid from '@/components/VehicleGrid'
 import EnergySection from '@/components/EnergySection'
 import Footer from '@/components/Footer'
