@@ -26,6 +26,7 @@ npm install
 ### 2. Run development server
 
 ```bash
+add .env
 npm run dev
 ```
 
@@ -43,19 +44,66 @@ npm start
 ```
 tesla-clone/
 ├── app/
-│   ├── globals.css       # Base styles
-│   ├── layout.tsx        # Root layout
-│   └── page.tsx          # Main page
+│   ├── api/
+│   │   └── cars/
+│   │       ├── route.ts          # GET all cars API
+│   │       └── [id]/
+│   │           └── route.ts      # GET car by ID API
+│   │
+│   ├── cars/
+│   │   ├── page.tsx             # Cars listing page
+│   │   └── [slug]/
+│   │       └── page.tsx         # Car details page (dynamic route)
+│   │
+│   ├── data/
+│   │   └── car.ts               # Static car data (fallback / seed data)
+│   │
+│   ├── lib/
+│   │   ├── mongodb.ts           # MongoDB connection setup
+│   │   └── security.ts          # CORS, headers, rate limiting
+│   │
+│   ├── models/
+│   │   └── Car.ts               # Mongoose schema/model
+│   │
+│   ├── scripts/
+│   │   └── seed.ts              # Seed database script
+│   │
+│   ├── globals.css              # Global styles (Tailwind)
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                # Homepage
+│
 ├── components/
-│   ├── Navbar.tsx        # Top navigation bar
-│   ├── HeroSlider.tsx    # Hero carousel (Model Y L + Model 3)
-│   ├── VehicleGrid.tsx   # All vehicle sections
-│   ├── EnergySection.tsx # Solar & energy sections
-│   └── Footer.tsx        # Bottom footer
-├── next.config.js
-├── tailwind.config.js
-├── tsconfig.json
-└── package.json
+│   └── common/
+│       ├── Navbar.tsx           # Top navigation bar
+│       ├── Slider.tsx           # Hero carousel / banner slider
+│       ├── VehicleGrid.tsx      # Vehicle listing grid
+│       ├── EnergySection.tsx    # Energy / solar section
+│       └── Footer.tsx           # Footer
+│
+├── store/
+│   ├── provider.tsx             # Redux provider setup
+│   ├── index.ts                 # Store configuration
+│   └── slices/
+│       └── carSlice.ts          # Car state (with persist)
+│
+├── types/
+│   └── common.ts                # TypeScript interfaces/types
+│
+├── public/                      # Static assets
+├── src/                         # (optional/unused - can be removed if not needed)
+│
+├── .env                         # Environment variables
+├── .env.local
+├── .env.sample                  # Sample env for setup
+├── .dockerignore
+├── docker-compose.yml           # Docker compose config
+├── Dockerfile                   # Docker setup
+├── next.config.js               # Next.js config
+├── tailwind.config.js           # Tailwind config
+├── tsconfig.json                # TypeScript config
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
 ## Key Design Decisions
